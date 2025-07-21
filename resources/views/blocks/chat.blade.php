@@ -215,7 +215,7 @@
             <template x-if="state.chat.tab !== ''">
                 <div class="chatroom__messages--wrapper" x-ref="messagesWrapper">
                     <ul class="chatroom__messages">
-                        <template x-for="message in messages" :key="message.id">
+                        <template x-for="message in [...messages.values()]" :key="message.id">
                             <li>
                                 <article class="chatbox-message">
                                     <header class="chatbox-message__header">
@@ -341,7 +341,7 @@
                                 </article>
                             </li>
                         </template>
-                        <li x-show="messages.length === 0">
+                        <li x-show="messages.size === 0">
                             There is no chat history here. Send a message!
                         </li>
                     </ul>
