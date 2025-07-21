@@ -154,7 +154,6 @@ document.addEventListener('alpine:init', () => {
 
         auth: user,
         statuses: [],
-        status: 0,
         echoes: [],
         chatrooms: [],
         messages: new Map(),
@@ -203,6 +202,8 @@ document.addEventListener('alpine:init', () => {
                     this.state.ui.error = 'Error loading chat. Please try again.';
                     this.state.ui.loading = false;
                 });
+
+            this.$watch('auth.chat_status_id', (status) => this.syncStatus());
 
             this.$cleanup = () => {
                 if (this.channel) {
@@ -677,18 +678,12 @@ document.addEventListener('alpine:init', () => {
             this.state.chat.showWhispers = !this.state.chat.showWhispers;
         },
 
-        changeStatus(status_id) {
-            this.status = status_id;
-            if (this.auth.chat_status.id !== status_id) {
-                axios
-                    .post(`/api/chat/user/status`, { status_id })
-                    .then((response) => {
-                        this.auth = response.data;
-                    })
-                    .catch((error) => {
-                        console.error('Error changing status:', error);
-                    });
-            }
+        syncStatus() {
+            axios
+                .post(`/api/chat/user/status`, { status_id: this.auth.chat_status_id })
+                .catch((error) => {
+                    console.error('Error changing status:', error);
+                });
         },
 
         startBot() {
