@@ -2,7 +2,7 @@
     display: grid;
     grid-template-areas: 'messages users' 'whispers users' 'new-message users';
     grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr 18px auto;
+    grid-template-rows: 1fr auto auto;
     height: 700px;
     max-height: 90vh;
     background-color: inherit;
@@ -19,7 +19,7 @@
     flex-direction: column;
     list-style-type: none;
     gap: 8px;
-    padding: 0 10px 5px;
+    padding: 0 10px;
     margin: 0;
     align-items: flex-start;
 }
