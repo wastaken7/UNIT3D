@@ -28,6 +28,7 @@
     grid-area: users;
     width: auto;
     overflow-y: auto;
+    background-color: var(--chatbox-users-bg);
 }
 
 .chatroom__whispers {
@@ -143,37 +144,6 @@
     border-radius: 10%;
     border-width: 2px;
     border-style: solid;
-}
-
-.chatbox-message__fallback-avatar {
-    width: 34px;
-    height: 34px;
-    border-radius: 17px;
-}
-
-.chatbox-message__delete-button {
-    padding: 4px 12px;
-    margin: 0;
-    background-color: transparent;
-    text-align: center;
-    border: none;
-    color: transparent;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.chatbox-message:hover .chatbox-message__delete-button {
-    color: var(--chatbox-button-fg);
-    width: auto;
-
-    &:hover {
-        color: var(--chatbox-button-hover-fg);
-        width: auto;
-    }
-}
-
-.chatroom__users {
-    background-color: var(--chatbox-users-bg);
 }
 
 .chatroom-users__heading {
