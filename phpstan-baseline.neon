@@ -595,88 +595,10 @@ parameters:
 			path: app/Http/Requests/StoreRequestFillRequest.php
 
 		-
-			message: '#^Method App\\Http\\Resources\\BotResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/BotResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\BotResource\:\:toArray\(\) return type with generic interface Illuminate\\Contracts\\Support\\Arrayable does not specify its types\: TKey, TValue$#'
-			identifier: missingType.generics
-			count: 1
-			path: app/Http/Resources/BotResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\ChatMessageResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/ChatMessageResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\ChatRoomResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/ChatRoomResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\ChatUserResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/ChatUserResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\TorrentResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/TorrentResource.php
-
-		-
 			message: '#^Strict comparison using \=\=\= between int\|null and true will always evaluate to false\.$#'
 			identifier: identical.alwaysFalse
 			count: 1
 			path: app/Http/Resources/TorrentResource.php
-
-		-
-			message: '#^Unable to resolve the template type TKey in call to function collect$#'
-			identifier: argument.templateType
-			count: 1
-			path: app/Http/Resources/TorrentResource.php
-
-		-
-			message: '#^Unable to resolve the template type TValue in call to function collect$#'
-			identifier: argument.templateType
-			count: 1
-			path: app/Http/Resources/TorrentResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\TorrentsResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/TorrentsResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\TorrentsResource\:\:with\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/TorrentsResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\UserAudibleResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/UserAudibleResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\UserEchoResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/UserEchoResource.php
-
-		-
-			message: '#^Method App\\Http\\Resources\\UserResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Http/Resources/UserResource.php
 
 		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
