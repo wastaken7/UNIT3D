@@ -107,7 +107,6 @@ class TorrentResource extends JsonResource
                 'media_info'   => $this->mediainfo,
                 'bd_info'      => $this->bdinfo,
                 'description'  => $this->description,
-                'info_hash'    => bin2hex($this->info_hash),
                 'size'         => $this->size,
                 'folder'       => $this->folder,
                 'num_file'     => $this->num_file,

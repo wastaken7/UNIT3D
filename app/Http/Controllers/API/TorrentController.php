@@ -671,7 +671,6 @@ class TorrentController extends BaseController
                             'media_info'       => $hit['mediainfo'],
                             'bd_info'          => $hit['bdinfo'],
                             'description'      => $hit['description'],
-                            'info_hash'        => $hit['info_hash'],
                             'size'             => $hit['size'],
                             'num_file'         => $hit['num_file'],
                             'files'            => $hit['files'],
