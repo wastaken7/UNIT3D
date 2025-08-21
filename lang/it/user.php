@@ -310,8 +310,8 @@ return [
     'visible-to-follower' => 'Seguaci visibili',
     'visible-to-follower-help' => 'I tuoi follower saranno visibili solo allo staff e ai seguenti gruppi. Queste impostazioni sono sovrascritte se <strong>vai privato</strong>',
     'visible-to-forum' => 'Informazioni sul forum Visibile a',
-    'visible-to-forum-help' => 'Le informazioni del tuo forum saranno visibili solo allo staff e ai seguenti gruppi. Queste impostazioni sono sovrascritte se <strong>vai privato</strong>',
-    'visible-to-other' => 'Altro visibile',
+    'visible-to-forum-help' => 'Le tue  informazioni nel forum saranno visibili solo allo staff e ai seguenti gruppi. Queste impostazioni sono sovrascritte se <strong>vai privato</strong>',
+    'visible-to-other' => 'Altro visibile a',
     'visible-to-other-help' => 'Altre informazioni relative al tuo account saranno visibili solo allo staff e ai seguenti gruppi. Queste impostazioni sono sovrascritte se <strong>vai privato</strong> o se <strong>vai nascosto</strong>',
     'visible-to-profile' => 'Profilo visibile a',
     'visible-to-profile-help' => 'Il tuo profilo sarà visibile solo al personale e ai seguenti gruppi. Queste impostazioni sono sovrascritte se <strong>vai privato</strong>',
@@ -325,4 +325,6 @@ return [
     'wishlist' => 'Lista dei desideri',
     'top-bountied' => 'Top Ricompense',
     'warnings' => 'Avvertenze',
+    'unregistered-info-hashes' => 'Informazioni HASH non registrate',
+    'personal-releases' => 'Release Personali',
 ];
