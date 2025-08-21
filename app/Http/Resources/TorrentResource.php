@@ -48,7 +48,6 @@ class TorrentResource extends JsonResource
      *         media_info: string,
      *         bd_info: string,
      *         description: string,
-     *         info_hash: string,
      *         size: float,
      *         folder: string|null,
      *         num_file: int,
