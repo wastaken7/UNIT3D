@@ -83,9 +83,9 @@ class RequestController extends Controller
 
         if ($request->filled('claimed')) {
             if ($request->boolean('claimed')) {
-                $query->has('claim');
+                $query->whereNotNull('claim');
             } else {
-                $query->doesntHave('claim');
+                $query->whereNull('claim');
             }
         }
 
