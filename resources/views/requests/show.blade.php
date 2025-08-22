@@ -82,6 +82,47 @@
                     {{ $torrentRequest->category->name }}
                 </span>
             </li>
+            @if ($torrentRequest->category->tv_meta)
+                @if (!is_null($torrentRequest->season_number) || !is_null($torrentRequest->episode_number))
+                    @if ($torrentRequest->season_number === 0 && $torrentRequest->episode_number === 0)
+                        <li class="request__season">
+                            <span>
+                                Complete Pack
+                            </span>
+                        </li>
+                    @elseif ($torrentRequest->season_number === 0 && $torrentRequest->episode_number !== 0)
+                        <li class="request__season">
+                            <span>
+                                Specials
+                            </span>
+                        </li>
+                        <li class="request__episode">
+                            <span>
+                                Episode {{ $torrentRequest->episode_number }}
+                            </span>
+                        </li>
+
+                    @elseif ($torrentRequest->season_number !== 0 && ($torrentRequest->episode_number === 0 || is_null($torrentRequest->episode_number)))
+                        <li class="request__season">
+                            <span>
+                                Season {{ $torrentRequest->season_number }}
+                            </span>
+                        </li>
+
+                    @elseif ($torrentRequest->season_number !== 0 && $torrentRequest->episode_number !== 0)
+                        <li class="request__season">
+                            <span>
+                                Season {{ $torrentRequest->season_number }}
+                            </span>
+                        </li>
+                        <li class="request__episode">
+                            <span>
+                                Episode {{ $torrentRequest->episode_number }}
+                            </span>
+                        </li>
+                    @endif
+                @endif
+            @endif
             <li class="request__resolution">
                 <span>
                     {{ $torrentRequest->resolution->name ?? 'Any' }}
