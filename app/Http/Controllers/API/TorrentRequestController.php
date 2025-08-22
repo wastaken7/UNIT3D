@@ -19,9 +19,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TorrentRequestResource;
 use App\Models\TorrentRequest;
-use App\Enums\AuthGuard;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class RequestController extends Controller
 {
@@ -36,7 +34,7 @@ class RequestController extends Controller
 
         if ($request->filled('name')) {
             $searchTerm = str_replace(' ', '%', $request->input('name'));
-            $query->where(function ($query) use ($searchTerm) {
+            $query->where(function ($query) use ($searchTerm): void {
                 $query->where('name', 'LIKE', '%'.$searchTerm.'%')
                     ->orWhere('description', 'LIKE', '%'.$searchTerm.'%');
             });
@@ -55,7 +53,7 @@ class RequestController extends Controller
         }
 
         if ($request->filled('tmdb')) {
-            $query->where(function ($query) use ($request) {
+            $query->where(function ($query) use ($request): void {
                 $tmdb = (int) $request->input('tmdb');
                 $query->where('tmdb_movie_id', '=', $tmdb)
                     ->orWhere('tmdb_tv_id', '=', $tmdb);
@@ -94,11 +92,11 @@ class RequestController extends Controller
         $sortField = match ($request->input('sortField', 'created_at')) {
             'name', 'created_at', 'updated_at' => $request->input('sortField', 'created_at'),
             'bounty' => 'bounty',
-            default => 'created_at'
+            default  => 'created_at'
         };
-        
+
         $sortDirection = match (strtolower($request->input('sortDirection', 'desc'))) {
-            'asc' => 'asc',
+            'asc'   => 'asc',
             default => 'desc'
         };
 
@@ -112,8 +110,8 @@ class RequestController extends Controller
         );
 
         return response()->json([
-            'results' => TorrentRequestResource::collection($requests),
-            'total_pages' => $requests->lastPage(),
+            'results'       => TorrentRequestResource::collection($requests),
+            'total_pages'   => $requests->lastPage(),
             'total_results' => $requests->total(),
         ]);
     }
