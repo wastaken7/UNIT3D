@@ -23,7 +23,7 @@ Filter, sort, and paginate torrent requests.
 | `filled`        | boolean | Filter by filled status                                 | -           |
 | `claimed`       | boolean | Filter by claimed status                                | -           |
 | `sortField`     | string  | Field to sort by (name, created_at, updated_at, bounty) | created_at  |
-| `sortDirectio`  | string  | Sort direction (asc, desc)                              | desc        |
+| `sortDirection` | string  | Sort direction (asc, desc)                              | desc        |
 | `page`          | integer | Page number                                             | 1           |
 | `perPage`       | integer | Items per page (max: 100)                               | 25          |
 
