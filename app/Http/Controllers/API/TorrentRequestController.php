@@ -123,14 +123,8 @@ class RequestController extends Controller
     {
         $request = TorrentRequest::with(['category', 'type', 'resolution', 'user', 'bounties', 'claim.user'])
             ->withSum('bounties as bounty', 'seedbonus')
-            ->find($id);
+            ->findOrFail($id);
 
-        if (!$request) {
-            return response()->json(['error' => 'Torrent request not found.', 'id' => $id,], 404);
-        }
-
-        return response()->json([
-            'results' => new TorrentRequestResource($request),
-        ]);
+        return (new TorrentRequestResource($request))->response();
     }
 }
