@@ -54,7 +54,7 @@ class RequestController extends Controller
 
         if ($request->filled('tmdb')) {
             $query->where(function ($query) use ($request): void {
-                $tmdb = (int) $request->input('tmdb');
+                $tmdb = $request->integer('tmdb');
                 $query->where('tmdb_movie_id', '=', $tmdb)
                     ->orWhere('tmdb_tv_id', '=', $tmdb);
             });
@@ -66,11 +66,11 @@ class RequestController extends Controller
         }
 
         if ($request->filled('tvdb')) {
-            $query->where('tvdb', '=', (int) $request->input('tvdb'));
+            $query->where('tvdb', '=', $request->integer('tvdb'));
         }
 
         if ($request->filled('mal')) {
-            $query->where('mal', '=', (int) $request->input('mal'));
+            $query->where('mal', '=', $request->integer('mal'));
         }
 
         if ($request->filled('filled')) {
@@ -102,8 +102,8 @@ class RequestController extends Controller
 
         $query->orderBy($sortField, $sortDirection);
 
-        $perPage = min((int) $request->input('perPage', 25), 100);
-        $page = max((int) $request->input('page', 1), 1);
+        $perPage = min($request->integer('perPage', 25), 100);
+        $page = max($request->integer('page', 1), 1);
         $requests = $query->paginate(
             perPage: $perPage,
             page: $page
