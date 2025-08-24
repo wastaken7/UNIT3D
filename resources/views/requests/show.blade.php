@@ -98,7 +98,9 @@
                         </li>
                     @elseif ($torrentRequest->season_number !== 0 && $torrentRequest->episode_number !== 0)
                         <li class="request__season">
-                            <span>S{{ $torrentRequest->season_number }}E{{ $torrentRequest->episode_number }}</span>
+                            <span>
+                                S{{ $torrentRequest->season_number }}E{{ $torrentRequest->episode_number }}
+                            </span>
                         </li>
                     @endif
                 @endif
