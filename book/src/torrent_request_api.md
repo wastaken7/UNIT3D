@@ -85,7 +85,7 @@ Filter information on a single request ID.
 
 ```bash
 curl -X GET "https://unit3d.site/api/requests/1" \
--H "Authorization: Bearer YOUR_API_TOKEN" \
+-H "Authorization: Bearer YOUR_API_KEY_HERE" \
 -H "Accept: application/json"
 ```
 
