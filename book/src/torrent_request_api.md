@@ -12,7 +12,7 @@ Filter, sort, and paginate torrent requests.
 
 | Parameter       | Type    | Description                                             | Default     |
 |-----------------|---------|---------------------------------------------------------|-------------|
-| `name`          | string  | Search in name and description                          | -           |
+| `name`          | string  | Search by name                                          | -           |
 | `categories[]`  | array   | Filter by category ID(s)                                | -           |
 | `types[]`       | array   | Filter by type ID(s)                                    | -           |
 | `resolutions[]` | array   | Filter by resolution ID(s)                              | -           |

@@ -34,56 +34,34 @@ class RequestController extends Controller
 
         $query->when($request->filled('name'), function ($query) use ($request) {
             $searchTerm = str_replace(' ', '%', $request->input('name'));
-            return $query->where(function ($query) use ($searchTerm) {
-                $query->where('name', 'LIKE', '%'.$searchTerm.'%')
-                    ->orWhere('description', 'LIKE', '%'.$searchTerm.'%');
-            });
+            return $query->where('name', 'LIKE', '%'.$searchTerm.'%');
         })
 
-        ->when($request->filled('categories'), function ($query) use ($request) {
-            return $query->whereIntegerInRaw('category_id', (array) $request->input('categories'));
-        })
+        ->when($request->filled('categories'), fn ($query) => $query->whereIntegerInRaw('category_id', (array) $request->input('categories')))
 
-        ->when($request->filled('types'), function ($query) use ($request) {
-            return $query->whereIntegerInRaw('type_id', (array) $request->input('types'));
-        })
+        ->when($request->filled('types'), fn ($query) => $query->whereIntegerInRaw('type_id', (array) $request->input('types')))
 
-        ->when($request->filled('resolutions'), function ($query) use ($request) {
-            return $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolutions'));
-        })
+        ->when($request->filled('resolutions'), fn ($query) => $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolutions')))
 
         ->when($request->filled('tmdb'), function ($query) use ($request) {
             $tmdb = $request->integer('tmdb');
-            return $query->where(function ($query) use ($tmdb) {
-                $query->where('tmdb_movie_id', '=', $tmdb)
-                    ->orWhere('tmdb_tv_id', '=', $tmdb);
-            });
+            return $query->where(fn ($query) => $query->where('tmdb_movie_id', '=', $tmdb)
+                ->orWhere('tmdb_tv_id', '=', $tmdb));
         })
 
-        ->when($request->filled('imdb'), function ($query) use ($request) {
-            $imdb = preg_replace('/[^0-9]/', '', $request->input('imdb'));
-            return $query->where('imdb', '=', $imdb);
-        })
+        ->when($request->filled('imdb'), fn ($query) => $query->where('imdb', '=', preg_replace('/[^0-9]/', '', $request->input('imdb'))))
 
-        ->when($request->filled('tvdb'), function ($query) use ($request) {
-            return $query->where('tvdb', '=', $request->integer('tvdb'));
-        })
+        ->when($request->filled('tvdb'), fn ($query) => $query->where('tvdb', '=', $request->integer('tvdb')))
 
-        ->when($request->filled('mal'), function ($query) use ($request) {
-            return $query->where('mal', '=', $request->integer('mal'));
-        })
+        ->when($request->filled('mal'), fn ($query) => $query->where('mal', '=', $request->integer('mal')))
 
-        ->when($request->filled('filled'), function ($query) use ($request) {
-            return $request->boolean('filled')
-                ? $query->whereNotNull('filled_by')
-                : $query->whereNull('filled_by');
-        })
+        ->when($request->filled('filled'), fn ($query) => $request->boolean('filled')
+            ? $query->whereNotNull('filled_by')
+            : $query->whereNull('filled_by'))
 
-        ->when($request->filled('claimed'), function ($query) use ($request) {
-            return $request->boolean('claimed')
-                ? $query->whereNotNull('claim')
-                : $query->whereNull('claim');
-        });
+        ->when($request->filled('claimed'), fn ($query) => $request->boolean('claimed')
+            ? $query->whereNotNull('claim')
+            : $query->whereNull('claim'));
 
         $sortField = match ($request->input('sortField', 'created_at')) {
             'name', 'created_at', 'updated_at' => $request->input('sortField', 'created_at'),
