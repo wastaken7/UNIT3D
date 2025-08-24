@@ -32,62 +32,58 @@ class RequestController extends Controller
             ->with(['category', 'type', 'resolution', 'user', 'bounties', 'claim.user'])
             ->withSum('bounties as bounty', 'seedbonus');
 
-        if ($request->filled('name')) {
+        $query->when($request->filled('name'), function ($query) use ($request) {
             $searchTerm = str_replace(' ', '%', $request->input('name'));
-            $query->where(function ($query) use ($searchTerm): void {
+            return $query->where(function ($query) use ($searchTerm) {
                 $query->where('name', 'LIKE', '%'.$searchTerm.'%')
                     ->orWhere('description', 'LIKE', '%'.$searchTerm.'%');
             });
-        }
+        })
 
-        if ($request->filled('categories')) {
-            $query->whereIntegerInRaw('category_id', (array) $request->input('categories'));
-        }
+        ->when($request->filled('categories'), function ($query) use ($request) {
+            return $query->whereIntegerInRaw('category_id', (array) $request->input('categories'));
+        })
 
-        if ($request->filled('types')) {
-            $query->whereIntegerInRaw('type_id', (array) $request->input('types'));
-        }
+        ->when($request->filled('types'), function ($query) use ($request) {
+            return $query->whereIntegerInRaw('type_id', (array) $request->input('types'));
+        })
 
-        if ($request->filled('resolutions')) {
-            $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolutions'));
-        }
+        ->when($request->filled('resolutions'), function ($query) use ($request) {
+            return $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolutions'));
+        })
 
-        if ($request->filled('tmdb')) {
-            $query->where(function ($query) use ($request): void {
-                $tmdb = $request->integer('tmdb');
+        ->when($request->filled('tmdb'), function ($query) use ($request) {
+            $tmdb = $request->integer('tmdb');
+            return $query->where(function ($query) use ($tmdb) {
                 $query->where('tmdb_movie_id', '=', $tmdb)
                     ->orWhere('tmdb_tv_id', '=', $tmdb);
             });
-        }
+        })
 
-        if ($request->filled('imdb')) {
+        ->when($request->filled('imdb'), function ($query) use ($request) {
             $imdb = preg_replace('/[^0-9]/', '', $request->input('imdb'));
-            $query->where('imdb', '=', $imdb);
-        }
+            return $query->where('imdb', '=', $imdb);
+        })
 
-        if ($request->filled('tvdb')) {
-            $query->where('tvdb', '=', $request->integer('tvdb'));
-        }
+        ->when($request->filled('tvdb'), function ($query) use ($request) {
+            return $query->where('tvdb', '=', $request->integer('tvdb'));
+        })
 
-        if ($request->filled('mal')) {
-            $query->where('mal', '=', $request->integer('mal'));
-        }
+        ->when($request->filled('mal'), function ($query) use ($request) {
+            return $query->where('mal', '=', $request->integer('mal'));
+        })
 
-        if ($request->filled('filled')) {
-            if ($request->boolean('filled')) {
-                $query->whereNotNull('filled_by');
-            } else {
-                $query->whereNull('filled_by');
-            }
-        }
+        ->when($request->filled('filled'), function ($query) use ($request) {
+            return $request->boolean('filled')
+                ? $query->whereNotNull('filled_by')
+                : $query->whereNull('filled_by');
+        })
 
-        if ($request->filled('claimed')) {
-            if ($request->boolean('claimed')) {
-                $query->whereNotNull('claim');
-            } else {
-                $query->whereNull('claim');
-            }
-        }
+        ->when($request->filled('claimed'), function ($query) use ($request) {
+            return $request->boolean('claimed')
+                ? $query->whereNotNull('claim')
+                : $query->whereNull('claim');
+        });
 
         $sortField = match ($request->input('sortField', 'created_at')) {
             'name', 'created_at', 'updated_at' => $request->input('sortField', 'created_at'),
