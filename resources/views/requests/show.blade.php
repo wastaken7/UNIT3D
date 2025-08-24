@@ -86,25 +86,19 @@
                 @if ($torrentRequest->season_number !== null || $torrentRequest->episode_number !== null)
                     @if ($torrentRequest->season_number === 0 && $torrentRequest->episode_number === 0)
                         <li class="request__season">
-                            <span>Complete Pack</span>
+                            <span>S00</span>
                         </li>
                     @elseif ($torrentRequest->season_number === 0 && $torrentRequest->episode_number !== 0)
                         <li class="request__season">
-                            <span>Specials</span>
-                        </li>
-                        <li class="request__episode">
-                            <span>Episode {{ $torrentRequest->episode_number }}</span>
+                            <span>S00E{{ $torrentRequest->episode_number }}</span>
                         </li>
                     @elseif ($torrentRequest->season_number !== 0 && ($torrentRequest->episode_number === 0 || $torrentRequest->episode_number === null))
                         <li class="request__season">
-                            <span>Season {{ $torrentRequest->season_number }}</span>
+                            <span>S{{ $torrentRequest->season_number }}</span>
                         </li>
                     @elseif ($torrentRequest->season_number !== 0 && $torrentRequest->episode_number !== 0)
                         <li class="request__season">
-                            <span>Season {{ $torrentRequest->season_number }}</span>
-                        </li>
-                        <li class="request__episode">
-                            <span>Episode {{ $torrentRequest->episode_number }}</span>
+                            <span>S{{ $torrentRequest->season_number }}E{{ $torrentRequest->episode_number }}</span>
                         </li>
                     @endif
                 @endif
