@@ -86,7 +86,7 @@
                 @if ($torrentRequest->season_number !== null || $torrentRequest->episode_number !== null)
                     @if ($torrentRequest->season_number === 0 && $torrentRequest->episode_number === 0)
                         <li class="request__season">
-                            <span>S00</span>
+                            <span>Complete Pack</span>
                         </li>
                     @elseif ($torrentRequest->season_number === 0 && $torrentRequest->episode_number !== 0)
                         <li class="request__season">
