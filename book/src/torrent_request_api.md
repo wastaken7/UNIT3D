@@ -31,7 +31,7 @@ Filter, sort, and paginate torrent requests.
 
 ```bash
 curl -X GET "https://unit3d.site/api/requests/filter&tmdb=2508" \
--H "Authorization: Bearer api_key" \
+-H "Authorization: Bearer YOUR_API_KEY_HERE" \
 -H "Accept: application/json"
 ```
 
