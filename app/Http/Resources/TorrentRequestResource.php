@@ -50,8 +50,8 @@ class TorrentRequestResource extends JsonResource
             'bounty'         => $this->bounties?->sum('seedbonus') ?? 0,
             'status'         => $this->filled_by ? ($this->approved_by ? 'filled' : 'pending') : ($this->claim ? 'claimed' : 'unfilled'),
             'claimed'        => (bool) $this->claim,
-            'claimed_by'     => $this->when($this->claim, $this->claim?->anon ? 'anonymous' : ($this->claim?->user?->username ?? null)),
-            'filled_by'      => $this->when($this->filled_by, $this->filled_anon ? 'anonymous' : ($this->filler?->username ?? null)),
+            'claimed_by'     => $this->when($this->claim !== null, $this->claim?->anon ? 'anonymous' : ($this->claim?->user?->username ?? null)),
+            'filled_by'      => $this->when($this->filled_by !== null, $this->filled_anon ? 'anonymous' : ($this->filler?->username ?? null)),
             'created'        => $this->created_at->toIso8601String(),
             'updated_at'     => $this->updated_at->toIso8601String(),
         ];
