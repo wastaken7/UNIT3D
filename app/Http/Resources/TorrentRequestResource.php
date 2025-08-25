@@ -47,7 +47,7 @@ class TorrentRequestResource extends JsonResource
             'igdb'           => $this->igdb,
             'season_number'  => $this->when($this->season_number !== null, $this->season_number),
             'episode_number' => $this->when($this->episode_number !== null, $this->episode_number),
-            'bounty'         => $this->bounties?->sum('seedbonus') ?? 0,
+            'bounty'         => $this->when($this->bounties !== null, $this->bounties?->sum('seedbonus') ?? 0),
             'status'         => $this->filled_by ? ($this->approved_by ? 'filled' : 'pending') : ($this->claim ? 'claimed' : 'unfilled'),
             'claimed'        => (bool) $this->claim,
             'claimed_by'     => $this->when($this->claim !== null, $this->claim?->anon ? 'anonymous' : ($this->claim?->user?->username ?? null)),
