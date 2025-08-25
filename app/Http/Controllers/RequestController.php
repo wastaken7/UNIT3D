@@ -58,7 +58,7 @@ class RequestController extends Controller
     public function show(Request $request, TorrentRequest $torrentRequest): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         return view('requests.show', [
-            'torrentRequest' => $torrentRequest->load(['category', 'claim' => ['user'], 'bounties', 'torrent']),
+            'torrentRequest' => $torrentRequest->load(['category', 'claim.user.group', 'bounties.user.group', 'torrent']),
             'user'           => $request->user(),
             'canEdit'        => $request->user()->group->is_modo || TorrentRequest::query()
                 ->whereDoesntHave('bounties', fn ($query) => $query->where('user_id', '!=', $request->user()->id))
