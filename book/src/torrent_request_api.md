@@ -22,8 +22,6 @@ Filter, sort, and paginate torrent requests.
 | `mal`           | integer | Filter by MAL ID                                        | -           |
 | `filled`        | boolean | Filter by filled status                                 | -           |
 | `claimed`       | boolean | Filter by claimed status                                | -           |
-| `sortField`     | string  | Field to sort by (name, created_at, updated_at, bounty) | created_at  |
-| `sortDirection` | string  | Sort direction (asc, desc)                              | desc        |
 | `page`          | integer | Page number                                             | 1           |
 | `perPage`       | integer | Items per page (max: 100)                               | 25          |
 
@@ -39,7 +37,7 @@ curl -X GET "https://unit3d.site/api/requests/filter?tmdb=2508" \
 
 ```json
 {
-  "results": [
+  "data": [
     {
       "id": 1,
       "name": "Mind Your Language S04",
@@ -58,14 +56,42 @@ curl -X GET "https://unit3d.site/api/requests/filter?tmdb=2508" \
       "bounty": 125000,
       "status": "unfilled",
       "claimed": false,
-      "claimed_by": null,
-      "filled_by": null,
       "created": "2025-08-01T11:02:22+00:00",
       "updated_at": "2025-08-21T12:40:27+00:00"
     }
   ],
-  "total_pages": 1,
-  "total_results": 1
+  "links": {
+    "first": "https://unit3d.site/api/requests/filter?page=1",
+    "last": "https://unit3d.site/api/requests/filter?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "links": [
+      {
+        "url": null,
+        "label": "&laquo; Previous",
+        "active": false
+      },
+      {
+        "url": "https://unit3d.site/api/requests/filter?page=1",
+        "label": "1",
+        "active": true
+      },
+      {
+        "url": null,
+        "label": "Next &raquo;",
+        "active": false
+      }
+    ],
+    "path": "https://unit3d.site/api/requests/filter",
+    "per_page": 25,
+    "to": 1,
+    "total": 1
+  }
 }
 ```
 
@@ -93,7 +119,7 @@ curl -X GET "https://unit3d.site/api/requests/1" \
 
 ```json
 {
-  "results": {
+  "data": {
     "id": 1,
     "name": "Mind Your Language S04",
     "description": "Example description.",
@@ -111,8 +137,6 @@ curl -X GET "https://unit3d.site/api/requests/1" \
     "bounty": 125000,
     "status": "unfilled",
     "claimed": false,
-    "claimed_by": null,
-    "filled_by": null,
     "created": "2025-08-01T11:02:22+00:00",
     "updated_at": "2025-08-21T12:40:27+00:00"
   }

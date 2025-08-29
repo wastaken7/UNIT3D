@@ -56,19 +56,6 @@ class RequestController extends Controller
                 ? $query->whereNotNull('claim')
                 : $query->whereNull('claim'));
 
-        $sortField = match ($request->input('sortField', 'created_at')) {
-            'name', 'created_at', 'updated_at' => $request->input('sortField', 'created_at'),
-            'bounty' => 'bounty',
-            default  => 'created_at'
-        };
-
-        $sortDirection = match (strtolower($request->input('sortDirection', 'desc'))) {
-            'asc'   => 'asc',
-            default => 'desc'
-        };
-
-        $query->orderBy($sortField, $sortDirection);
-
         $perPage = min($request->integer('perPage', 25), 100);
         $page = max($request->integer('page', 1), 1);
         $requests = $query->paginate(
@@ -76,11 +63,7 @@ class RequestController extends Controller
             page: $page
         );
 
-        return response()->json([
-            'results'       => TorrentRequestResource::collection($requests),
-            'total_pages'   => $requests->lastPage(),
-            'total_results' => $requests->total(),
-        ]);
+        return TorrentRequestResource::collection($requests)->response();
     }
 
     /**
