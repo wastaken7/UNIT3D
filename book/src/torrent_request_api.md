@@ -13,9 +13,9 @@ Filter, sort, and paginate torrent requests.
 | Parameter       | Type    | Description                                             | Default     |
 |-----------------|---------|---------------------------------------------------------|-------------|
 | `name`          | string  | Search by name                                          | -           |
-| `categories[]`  | array   | Filter by category ID(s)                                | -           |
-| `types[]`       | array   | Filter by type ID(s)                                    | -           |
-| `resolutions[]` | array   | Filter by resolution ID(s)                              | -           |
+| `categories`  | int[]   | Filter by category ID(s)                                | -           |
+| `types`       | int[]   | Filter by type ID(s)                                    | -           |
+| `resolutions` | int[]   | Filter by resolution ID(s)                              | -           |
 | `tmdb`          | integer | Filter by TMDB ID                                       | -           |
 | `imdb`          | string  | Filter by IMDB ID                                       | -           |
 | `tvdb`          | integer | Filter by TVDB ID                                       | -           |
