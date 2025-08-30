@@ -37,9 +37,9 @@ class RequestController extends Controller
 
             return $query->where('name', 'LIKE', '%'.$searchTerm.'%');
         })
-            ->when($request->filled('categories'), fn ($query) => $query->whereIntegerInRaw('category_id', (array) $request->input('categories')))
-            ->when($request->filled('types'), fn ($query) => $query->whereIntegerInRaw('type_id', (array) $request->input('types')))
-            ->when($request->filled('resolutions'), fn ($query) => $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolutions')))
+            ->when($request->filled('category_id'), fn ($query) => $query->whereIntegerInRaw('category_id', (array) $request->input('category_id')))
+            ->when($request->filled('type_id'), fn ($query) => $query->whereIntegerInRaw('type_id', (array) $request->input('type_id')))
+            ->when($request->filled('resolution_id'), fn ($query) => $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolution_id')))
             ->when($request->filled('tmdb'), function ($query) use ($request) {
                 $tmdb = $request->integer('tmdb');
 
