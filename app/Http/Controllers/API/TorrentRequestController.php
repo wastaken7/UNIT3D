@@ -46,7 +46,7 @@ class RequestController extends Controller
                 return $query->where(fn ($query) => $query->where('tmdb_movie_id', '=', $tmdb)
                     ->orWhere('tmdb_tv_id', '=', $tmdb));
             })
-            ->when($request->filled('imdb'), fn ($query) => $query->where('imdb', '=', preg_replace('/[^0-9]/', '', $request->input('imdb'))))
+            ->when($request->filled('imdb'), fn ($query) => $query->where('imdb', '=', $request->integer('imdb')))
             ->when($request->filled('tvdb'), fn ($query) => $query->where('tvdb', '=', $request->integer('tvdb')))
             ->when($request->filled('mal'), fn ($query) => $query->where('mal', '=', $request->integer('mal')))
             ->when($request->filled('filled'), fn ($query) => $request->boolean('filled')

@@ -17,12 +17,11 @@ Filter, sort, and paginate torrent requests.
 | `type_id`       | int[]   | Filter by type ID(s)                                    | -           |
 | `resolution_id` | int[]   | Filter by resolution ID(s)                              | -           |
 | `tmdb`          | integer | Filter by TMDB ID                                       | -           |
-| `imdb`          | string  | Filter by IMDB ID                                       | -           |
+| `imdb`          | integer | Filter by IMDB ID                                       | -           |
 | `tvdb`          | integer | Filter by TVDB ID                                       | -           |
 | `mal`           | integer | Filter by MAL ID                                        | -           |
 | `filled`        | boolean | Filter by filled status                                 | -           |
 | `claimed`       | boolean | Filter by claimed status                                | -           |
-| `page`          | integer | Page number                                             | 1           |
 | `perPage`       | integer | Items per page (max: 100)                               | 25          |
 
 #### Example Request
