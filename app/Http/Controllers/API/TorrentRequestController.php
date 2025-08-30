@@ -30,13 +30,8 @@ class RequestController extends Controller
     {
         $query = TorrentRequest::query()
             ->with(['user', 'claim.user', 'filler'])
-            ->withSum('bounties', 'seedbonus');
-
-        $query->when($request->filled('name'), function ($query) use ($request) {
-            $searchTerm = str_replace(' ', '%', $request->input('name'));
-
-            return $query->where('name', 'LIKE', '%'.$searchTerm.'%');
-        })
+            ->withSum('bounties', 'seedbonus')
+            ->when($request->filled('name'), fn ($query) => $query->where('name', 'LIKE', '%'.str_replace(' ', '%', $request->input('name')).'%'))
             ->when($request->filled('category_id'), fn ($query) => $query->whereIntegerInRaw('category_id', (array) $request->input('category_id')))
             ->when($request->filled('type_id'), fn ($query) => $query->whereIntegerInRaw('type_id', (array) $request->input('type_id')))
             ->when($request->filled('resolution_id'), fn ($query) => $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolution_id')))
