@@ -40,7 +40,7 @@ class RequestController extends Controller
             ->when($request->filled('category_id'), fn ($query) => $query->whereIntegerInRaw('category_id', (array) $request->input('category_id')))
             ->when($request->filled('type_id'), fn ($query) => $query->whereIntegerInRaw('type_id', (array) $request->input('type_id')))
             ->when($request->filled('resolution_id'), fn ($query) => $query->whereIntegerInRaw('resolution_id', (array) $request->input('resolution_id')))
-            ->when($request->filled('tmdb'), fn ($query)  => $query->whereAny(['tmdb_movie_id', 'tmdb_tv_id'], '=', $request->integer('tmdb')))
+            ->when($request->filled('tmdb'), fn ($query) => $query->whereAny(['tmdb_movie_id', 'tmdb_tv_id'], '=', $request->integer('tmdb')))
             ->when($request->filled('imdb'), fn ($query) => $query->where('imdb', '=', $request->integer('imdb')))
             ->when($request->filled('tvdb'), fn ($query) => $query->where('tvdb', '=', $request->integer('tvdb')))
             ->when($request->filled('mal'), fn ($query) => $query->where('mal', '=', $request->integer('mal')))
