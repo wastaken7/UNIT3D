@@ -71,7 +71,7 @@ class RequestController extends Controller
      */
     public function show(int $id): \Illuminate\Http\JsonResponse
     {
-        $request = TorrentRequest::with(['category', 'type', 'resolution', 'user', 'bounties', 'claim.user'])
+        $request = TorrentRequest::with(['user', 'claim.user', 'filler'])
             ->withSum('bounties', 'seedbonus')
             ->findOrFail($id);
 
