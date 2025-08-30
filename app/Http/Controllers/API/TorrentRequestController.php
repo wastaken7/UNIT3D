@@ -29,7 +29,7 @@ class RequestController extends Controller
     public function filter(Request $request): \Illuminate\Http\JsonResponse
     {
         $query = TorrentRequest::query()
-            ->with(['category', 'type', 'resolution', 'user', 'bounties', 'claim.user'])
+            ->with(['user', 'claim.user', 'filler'])
             ->withSum('bounties', 'seedbonus');
 
         $query->when($request->filled('name'), function ($query) use ($request) {
