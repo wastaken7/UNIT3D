@@ -75,6 +75,6 @@ class RequestController extends Controller
             ->withSum('bounties', 'seedbonus')
             ->findOrFail($id);
 
-        return (new TorrentRequestResource($request))->response();
+        return new TorrentRequestResource($request)->response();
     }
 }
