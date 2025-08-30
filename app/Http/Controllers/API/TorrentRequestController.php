@@ -30,7 +30,7 @@ class RequestController extends Controller
     {
         $query = TorrentRequest::query()
             ->with(['category', 'type', 'resolution', 'user', 'bounties', 'claim.user'])
-            ->withSum('bounties as bounty', 'seedbonus');
+            ->withSum('bounties', 'seedbonus');
 
         $query->when($request->filled('name'), function ($query) use ($request) {
             $searchTerm = str_replace(' ', '%', $request->input('name'));
