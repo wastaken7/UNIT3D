@@ -13,8 +13,11 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('requests', function (Blueprint $table): void {
-            $table->integer('season_number')->after('igdb')->nullable()->index();
-            $table->integer('episode_number')->after('season_number')->nullable()->index();
+            $table->integer('season_number')->unsigned()->after('igdb')->nullable();
+            $table->integer('episode_number')->unsigned()->after('season_number')->nullable();
+
+            $table->index(['season_number', 'episode_number']);
+            $table->index('episode_number');
         });
     }
 };
