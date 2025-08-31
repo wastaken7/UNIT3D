@@ -19,7 +19,7 @@
                     {{ __('common.download') }}
                 </a>
             @endif
-        @else
+        @elseif (config('torrent.magnet'))
             <a
                 href="magnet:?dn={{ $torrent->name }}&xt=urn:btih:{{ bin2hex($torrent->info_hash) }}&as={{ route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => $user->rsskey]) }}&tr={{ route('announce', ['passkey' => $user->passkey]) }}&xl={{ $torrent->size }}"
                 class="form__button form__button--filled form__button--centered"
@@ -180,12 +180,14 @@
                 <h4 class="dialog__heading">
                     {{ __('common.files') }}
                 </h4>
-                <div class="dialog__actions">
-                    <div class="dialog__action">
-                        {{ __('torrent.info-hash') }}:
-                        {{ bin2hex($torrent->info_hash) }}
+                @if ($user->group->is_modo)
+                    <div class="dialog__actions">
+                        <div class="dialog__action">
+                            {{ __('torrent.info-hash') }}:
+                            {{ bin2hex($torrent->info_hash) }}
+                        </div>
                     </div>
-                </div>
+                @endif
             </header>
             <div x-bind="dialogForm" x-data="tabs" data-default-tab="hierarchy">
                 <menu class="panel__tabs">

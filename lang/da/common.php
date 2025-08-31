@@ -237,7 +237,12 @@ return [
     'system-message' => 'DETTE ER EN AUTOMATISK SYSTEMBESKED, SVAR VENLIGST IKKE!',
     'top-10' => 'Top 10',
     'wished' => 'Ønskede',
-    'article' => 'Articolo',
+    'article' => 'Artikel',
     'and' => 'og',
     'test' => 'test',
+    'alive' => 'I live',
+    'dead' => 'Døde',
+    'total' => 'Total',
+    'trending' => 'Trender',
+    'deleted_at' => 'Slettet',
 ];
